@@ -6,7 +6,7 @@ $navbar-default-bg: black;
 #logo{
   float: left;
   font-style: italic;
-  font-size: 1.7em;
+  font-size: 2em;
   font-weight: bold;
   color: #fff;
   text-transform: capitalize;
@@ -37,14 +37,16 @@ h5{
 }
 
 .jumbotron{
-  background-color: #9b1f0f;
-  height: 550px;
+  background-image: asset-url('article-writing-service.jpg');
+  background-size: cover;
+  height: 600px;
+
 }
 
 .jumbotron h1,{
   color: #fff;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 320px;
   letter-spacing: -1px;
   font-weight: bold;
 }
