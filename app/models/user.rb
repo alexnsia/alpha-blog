@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :articles
   before_save { self.email = email.downcase }
+  befor_create { generate_token(:auth_token) }
   validates :username, presence: true,
             uniqueness: { case_sensitive: false},
             length: { minimum: 3, maximum: 25 }
@@ -10,6 +11,7 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }
   has_secure_password
 
+<<<<<<< HEAD
 
  def send_password_reset
     generate_token(:password_reset_token)
@@ -17,4 +19,14 @@ class User < ApplicationRecord
     save!
     UserMailer.password_reset(self).deliver
   end
+=======
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+
+
+
+>>>>>>> remember_me_users
 end
