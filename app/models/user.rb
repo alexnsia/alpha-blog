@@ -10,23 +10,18 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             format: { with: VALID_EMAIL_REGEX }
   has_secure_password
-
-<<<<<<< HEAD
-
- def send_password_reset
+git
+  def send_password_rest
     generate_token(:password_reset_token)
-   self.password_reset_sent_at = Time.zone.now
+    self.password_reset_sent_at =Time.zone.now
     save!
     UserMailer.password_reset(self).deliver
   end
-=======
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
 
-
-
->>>>>>> remember_me_users
 end
