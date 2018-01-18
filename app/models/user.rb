@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :articles
+  before_create { generate_token(:auth_token) }
   before_save { self.email = email.downcase }
-  befor_create { generate_token(:auth_token) }
   validates :username, presence: true,
             uniqueness: { case_sensitive: false},
             length: { minimum: 3, maximum: 25 }
@@ -10,10 +10,10 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             format: { with: VALID_EMAIL_REGEX }
   has_secure_password
-git
+
   def send_password_rest
     generate_token(:password_reset_token)
-    self.password_reset_sent_at =Time.zone.now
+    self.password_reset_sent_at = Time.zone.now
     save!
     UserMailer.password_reset(self).deliver
   end
